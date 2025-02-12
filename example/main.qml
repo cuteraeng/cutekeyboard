@@ -31,7 +31,6 @@ Window {
                 width: 200
                 height: 50
             }
-
         }
 
         RowLayout {
@@ -50,7 +49,6 @@ Window {
                 height: 50
                 EnterKeyAction.enabled: false
             }
-
         }
 
         RowLayout {
@@ -69,7 +67,6 @@ Window {
                 height: 50
                 EnterKeyAction.enabled: true
             }
-
         }
 
         RowLayout {
@@ -88,9 +85,7 @@ Window {
                 height: 50
                 inputMethodHints: Qt.ImhDigitsOnly
             }
-
         }
-
     }
 
     InputPanel {
@@ -111,7 +106,6 @@ Window {
                 target: inputPanel
                 y: window.height - inputPanel.height
             }
-
         }
 
         transitions: Transition {
@@ -125,11 +119,7 @@ Window {
                     duration: 150
                     easing.type: Easing.InOutQuad
                 }
-
             }
-
         }
-
     }
-
 }

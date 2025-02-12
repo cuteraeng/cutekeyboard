@@ -35,7 +35,6 @@ ColumnLayout {
             BackspaceKey {
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -67,7 +66,6 @@ ColumnLayout {
                 btnKey: Qt.Key_Space
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -94,7 +92,6 @@ ColumnLayout {
             HideKey {
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -115,9 +112,6 @@ ColumnLayout {
             EnterKey {
                 inputPanelRef: inputPanel
             }
-
         }
-
     }
-
 }

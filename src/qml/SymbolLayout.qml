@@ -8,7 +8,6 @@ Item {
     onVisibleChanged: {
         if (!visible)
             secondPage = false;
-
     }
 
     ColumnLayout {
@@ -83,7 +82,6 @@ Item {
             BackspaceKey {
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -154,7 +152,6 @@ Item {
                 weight: 283
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -231,7 +228,6 @@ Item {
                 functionKey: true
                 onClicked: secondPage = !secondPage
             }
-
         }
 
         RowLayout {
@@ -256,9 +252,7 @@ Item {
             HideKey {
                 weight: 205
             }
-
         }
-
     }
 
     ColumnLayout {
@@ -334,7 +328,6 @@ Item {
             BackspaceKey {
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -405,7 +398,6 @@ Item {
                 weight: 283
                 inputPanelRef: inputPanel
             }
-
         }
 
         RowLayout {
@@ -480,7 +472,6 @@ Item {
                 functionKey: true
                 onClicked: secondPage = !secondPage
             }
-
         }
 
         RowLayout {
@@ -505,9 +496,6 @@ Item {
             HideKey {
                 weight: 205
             }
-
         }
-
     }
-
 }

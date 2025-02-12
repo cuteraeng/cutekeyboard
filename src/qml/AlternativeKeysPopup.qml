@@ -66,11 +66,7 @@ Item {
                     weight: width
                     onClicked: root.visible = false
                 }
-
             }
-
         }
-
     }
-
 }

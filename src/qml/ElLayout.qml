@@ -64,7 +64,6 @@ ColumnLayout {
         BackspaceKey {
             inputPanelRef: inputPanel
         }
-
     }
 
     RowLayout {
@@ -128,14 +127,12 @@ ColumnLayout {
             weight: 283
             inputPanelRef: inputPanel
         }
-
     }
 
     RowLayout {
         property real keyWeight: 156
 
-        ShiftKey {
-        }
+        ShiftKey {}
 
         Key {
             btnText: "ζ"
@@ -189,7 +186,6 @@ ColumnLayout {
         ShiftKey {
             weight: 204
         }
-
     }
 
     RowLayout {
@@ -219,7 +215,5 @@ ColumnLayout {
         HideKey {
             weight: 205
         }
-
     }
-
 }

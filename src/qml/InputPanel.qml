@@ -61,12 +61,10 @@ Item {
     onActiveChanged: {
         if (alternativesKeyPopup.visible && !active)
             alternativesKeyPopup.visible = false;
-
     }
     onLanguageLayoutChanged: loadLettersLayout()
     Component.onCompleted: {
-
-        InputContext.registerInputPanel(root)
+        InputContext.registerInputPanel(root);
 
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"];
@@ -136,19 +134,18 @@ Item {
                 fill: parent
                 margins: 5
             }
-
         }
 
         Connections {
             function refreshLayouts() {
                 if (InputEngine.symbolMode)
                     layoutLoader.setSource("SymbolLayout.qml", {
-                    "inputPanel": root
-                });
+                        "inputPanel": root
+                    });
                 else if (InputEngine.inputMode === InputEngine.DigitsOnly)
                     layoutLoader.setSource("DigitsLayout.qml", {
-                    "inputPanel": root
-                });
+                        "inputPanel": root
+                    });
                 else
                     loadLettersLayout();
             }
@@ -172,7 +169,5 @@ Item {
 
             target: InputPanel
         }
-
     }
-
 }
