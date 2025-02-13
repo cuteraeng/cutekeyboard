@@ -7,18 +7,18 @@ ColumnLayout {
     RowLayout {
         property real keyWeight: 160
 
-        Key {            
+        Key {
             btnText: "й"
             inputPanelRef: inputPanel
         }
 
-        Key {            
+        Key {
             btnText: "ц"
             inputPanelRef: inputPanel
         }
 
-        Key {            
-            btnText: "у"            
+        Key {
+            btnText: "у"
             inputPanelRef: inputPanel
         }
 
@@ -27,14 +27,14 @@ ColumnLayout {
             inputPanelRef: inputPanel
         }
 
-        Key {            
+        Key {
             btnText: "е"
             alternativeKeys: "ё"
             inputPanelRef: inputPanel
         }
 
         Key {
-            btnText: "н"            
+            btnText: "н"
             inputPanelRef: inputPanel
         }
 
@@ -67,7 +67,6 @@ ColumnLayout {
         BackspaceKey {
             inputPanelRef: inputPanel
         }
-
     }
 
     RowLayout {
@@ -91,8 +90,8 @@ ColumnLayout {
             inputPanelRef: inputPanel
         }
 
-        Key {        
-            btnText: "в"            
+        Key {
+            btnText: "в"
             inputPanelRef: inputPanel
         }
 
@@ -101,12 +100,12 @@ ColumnLayout {
             inputPanelRef: inputPanel
         }
 
-        Key {            
+        Key {
             btnText: "п"
             inputPanelRef: inputPanel
         }
 
-        Key {            
+        Key {
             btnText: "р"
             inputPanelRef: inputPanel
         }
@@ -122,7 +121,7 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "д"        
+            btnText: "д"
             inputPanelRef: inputPanel
         }
 
@@ -146,11 +145,10 @@ ColumnLayout {
     RowLayout {
         property real keyWeight: 156
 
-        ShiftKey {
-        }
+        ShiftKey {}
 
         Key {
-            btnText: "я"            
+            btnText: "я"
             inputPanelRef: inputPanel
         }
 
@@ -160,7 +158,7 @@ ColumnLayout {
         }
 
         Key {
-            btnText: "с"            
+            btnText: "с"
             inputPanelRef: inputPanel
         }
 
@@ -190,7 +188,7 @@ ColumnLayout {
             inputPanelRef: inputPanel
         }
 
-        Key {            
+        Key {
             btnText: "ю"
             inputPanelRef: inputPanel
         }
@@ -198,7 +196,6 @@ ColumnLayout {
         ShiftKey {
             weight: 204
         }
-
     }
 
     RowLayout {
@@ -229,7 +226,5 @@ ColumnLayout {
         HideKey {
             weight: 205
         }
-
     }
-
 }

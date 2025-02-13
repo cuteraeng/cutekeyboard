@@ -27,7 +27,7 @@ Item {
             x = PopupLeft;
         text = InputEngine.uppercase ? keybutton.btnText.toUpperCase() : keybutton.btnText;
         font.family = keybutton.font.family;
-        visible = Qt.binding(function() {
+        visible = Qt.binding(function () {
             return keybutton.pressed;
         });
     }
@@ -63,9 +63,7 @@ Item {
                 position: 1
                 color: popupColor
             }
-
         }
-
     }
 
     Rectangle {
@@ -78,5 +76,4 @@ Item {
         x: 4
         y: 4
     }
-
 }

@@ -74,7 +74,6 @@ Item {
             firstSymbol: "0"
             keycode: Qt.Key_E
         }
-
     }
 
     ListModel {
@@ -124,7 +123,6 @@ Item {
             letter: "l"
             firstSymbol: "/"
         }
-
     }
 
     ListModel {
@@ -164,7 +162,5 @@ Item {
             letter: "m"
             firstSymbol: "+"
         }
-
     }
-
 }

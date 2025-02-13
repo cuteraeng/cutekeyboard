@@ -32,7 +32,8 @@ set(QML_FILES
     "qml/ShiftKey.qml"
     "qml/SpaceKey.qml"
     "qml/SymbolKey.qml"
-    "qml/SymbolLayout.qml")
+    "qml/SymbolLayout.qml"
+    "qml/LanguageKey.qml")
 
 foreach(_file IN_LISTS QML_FILES)
   cmake_path(GET _file FILENAME _fileName)
@@ -67,14 +68,10 @@ target_link_libraries(
   ${PROJECT_NAME} PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Qml Qt::Quick
                           Qt::QuickPrivate)
 
-if(${PROJECT_NAME} STREQUAL ${CMAKE_PROJECT_NAME})
-  set(INSTALL_DIR ${QT_DIR}/../../../plugins/platforminputcontexts)
-else()
-  set(INSTALL_DIR ${CMAKE_INSTALL_BINDIR}/platforminputcontexts)
-  set_target_properties(
-    ${PROJECT_NAME}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY
-               "$<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforminputcontexts")
-endif()
+# Install the shared library (plugin)
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${CMAKE_PREFIX_PATH}/plugins/platforminputcontexts)
 
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION ${INSTALL_DIR})
+# Install QML module
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/QtQuick/CuteKeyboard
+    DESTINATION ${CMAKE_PREFIX_PATH}/qml/QtQuick
+)

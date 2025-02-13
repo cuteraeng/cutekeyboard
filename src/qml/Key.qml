@@ -2,6 +2,7 @@ import CuteKeyboard 1.0
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.12
+import QtQuick.Controls.Basic
 
 Button {
     id: key
@@ -30,14 +31,12 @@ Button {
     onPressed: {
         if (inputPanelRef !== null && showPreview)
             inputPanelRef.showKeyPopup(key);
-
     }
     onPressedChanged: {
         if (pressed) {
             opacity = 0.7;
             if (alternativeKeys.length > 0)
                 longPressTimer.running = true;
-
         } else {
             opacity = 1;
             longPressTimer.running = false;
@@ -46,7 +45,6 @@ Button {
     onReleased: {
         if (!functionKey)
             InputEngine.virtualKeyClick(btnKey, InputEngine.uppercase ? btnText.toUpperCase() : btnText, InputEngine.uppercase ? Qt.ShiftModifier : 0);
-
     }
 
     Timer {
@@ -86,7 +84,6 @@ Button {
                 pixelSize: key.height * 0.4
                 capitalization: InputEngine.uppercase ? Font.AllUppercase : Font.MixedCase
             }
-
         }
 
         Image {
@@ -97,7 +94,5 @@ Button {
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
         }
-
     }
-
 }
