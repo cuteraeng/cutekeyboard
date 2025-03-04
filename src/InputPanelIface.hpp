@@ -3,6 +3,7 @@
 
 #include <QColor>
 #include <QObject>
+#include <QQmlEngine>
 
 /*!
  * \brief The InputPanelIface class contains properties shared between the
@@ -10,6 +11,8 @@
  */
 class InputPanelIface : public QObject {
     Q_OBJECT
+    QML_ELEMENT
+    QML_SINGLETON
 
     // clang-format off
     Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor NOTIFY backgroundColorChanged)
@@ -28,7 +31,6 @@ class InputPanelIface : public QObject {
     // clang-format on
 
    public:
-    explicit InputPanelIface(QObject *parent = nullptr);
     ~InputPanelIface();
 
     QColor backgroundColor() const;
@@ -71,6 +73,16 @@ class InputPanelIface : public QObject {
     QString languageLayout() const;
     void setLanguageLayout(const QString &languageIcon);
 
+    /**
+     * Returns the singleton instance to the QML context.
+     */
+    static InputPanelIface *create(QQmlEngine *, QJSEngine *);
+
+    /**
+     * Use this function to access the singleton instance.
+     */
+    static InputPanelIface *instance();
+
    signals:
     void backgroundColorChanged();
     void btnBackgroundColorChanged();
@@ -87,6 +99,10 @@ class InputPanelIface : public QObject {
     void languageLayoutChanged();
 
    private:
+    explicit InputPanelIface(QObject *parent = nullptr);
+
+    static InputPanelIface *s_instance;
+
     struct InputPanelIfacePrivate;
     InputPanelIfacePrivate *pimpl;
 };

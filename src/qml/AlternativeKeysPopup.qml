@@ -46,7 +46,7 @@ Item {
         id: listViewBackground
 
         radius: Math.round(height / 20)
-        color: InputPanel.backgroundColor
+        color: InputPanelIface.backgroundColor
         anchors.fill: parent
 
         RowLayout {

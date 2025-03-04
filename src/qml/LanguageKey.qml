@@ -4,21 +4,21 @@ import QtQuick 2.0
 Key {
     weight: 108.5
     btnKey: Qt.Key_Context2
-    btnIcon: InputPanel.languageIcon
+    btnIcon: InputPanelIface.languageIcon
     functionKey: true
     showPreview: false
-    btnBackground: InputPanel.btnSpecialBackgroundColor
+    btnBackground: InputPanelIface.btnSpecialBackgroundColor
     onClicked: {
-        var indx = InputPanel.availableLanguageLayouts.indexOf(InputPanel.languageLayout);
+        var indx = InputPanelIface.availableLanguageLayouts.indexOf(InputPanelIface.languageLayout);
         if (indx != -1) {
-            var nextIndx = (indx + 1) % InputPanel.availableLanguageLayouts.length;
-            var nextLangLayout = InputPanel.availableLanguageLayouts[nextIndx];
+            var nextIndx = (indx + 1) % InputPanelIface.availableLanguageLayouts.length;
+            var nextLangLayout = InputPanelIface.availableLanguageLayouts[nextIndx];
             if (InputEngine.inputLayoutValid(nextLangLayout))
-                InputPanel.languageLayout = nextLangLayout;
+                InputPanelIface.languageLayout = nextLangLayout;
             else
-                InputPanel.languageLayout = "En";
+                InputPanelIface.languageLayout = "En";
         } else {
-            InputPanel.languageLayout = InputPanel.availableLanguageLayouts[0];
+            InputPanelIface.languageLayout = InputPanelIface.availableLanguageLayouts[0];
         }
     }
 }

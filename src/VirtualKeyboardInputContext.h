@@ -7,6 +7,7 @@
  * \date 08/01/2015
  *
  * Copyright (c) 2015 Uwe Kindler
+ * Copyright (c) 2025 Przemysław Adam Sowa
  */
 
 #ifndef VIRTUALKEYBOARDINPUTCONTEXT_H
@@ -16,6 +17,7 @@
 
 #include <QRectF>
 #include <QPointer>
+#include <QQmlEngine>
 #include <memory.h>
 
 class QQmlEngine;
@@ -27,10 +29,13 @@ class VirtualKeyboardInputContextPrivate;
  */
 class VirtualKeyboardInputContext : public QPlatformInputContext {
     Q_OBJECT
+    QML_NAMED_ELEMENT(InputContext)
+    QML_SINGLETON
 
     Q_PROPERTY(QObject *inputItem READ inputItem NOTIFY inputItemChanged)
 
    public:
+
     /**
      * Virtual destructor
      */
@@ -104,6 +109,12 @@ class VirtualKeyboardInputContext : public QPlatformInputContext {
      */
     Q_INVOKABLE void registerInputPanel(QObject *inputPanel);
 
+    /**
+     * Returns the singleton instances to the QML context.
+     */
+
+   static VirtualKeyboardInputContext *create(QQmlEngine *, QJSEngine *);
+
    protected:
     /**
      * Protected constructor - use instance function to get the one and only
@@ -120,28 +131,6 @@ class VirtualKeyboardInputContext : public QPlatformInputContext {
      * QML item is child of a flickable
      */
     void ensureFocusedObjectVisible();
-
-   private:
-    /**
-     * The input contet creates the InputEngine object and provides it
-     * as a singleton to the QML context
-     */
-    static QObject *inputEngineProvider(QQmlEngine *engine,
-                                        QJSEngine *scriptEngine);
-
-    /**
-     * The input contet creates the InputPanel object and provides it
-     * as a singleton to the QML context
-     */
-    static QObject *inputPanelProvider(QQmlEngine *engine,
-                                       QJSEngine *scriptEngine);
-
-    /**
-     * The input contet creates the InputContext object and provides it
-     * as a singleton to the QML context
-     */
-    static QObject *inputContextProvider(QQmlEngine *engine,
-                                         QJSEngine *scriptEngine);
 
    private:
     VirtualKeyboardInputContextPrivate *d;

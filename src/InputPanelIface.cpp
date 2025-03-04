@@ -16,12 +16,18 @@ struct InputPanelIface::InputPanelIfacePrivate {
     QString languageLayout{};
 };
 
+InputPanelIface *InputPanelIface::s_instance = nullptr;
+
 InputPanelIface::InputPanelIface(QObject *parent)
     : QObject(parent), pimpl(new InputPanelIfacePrivate) {}
 
 InputPanelIface::~InputPanelIface() {
     if (pimpl != nullptr) {
         delete pimpl;
+    }
+
+    if (s_instance == this) {
+        s_instance = nullptr;
     }
 }
 
@@ -156,4 +162,17 @@ void InputPanelIface::setLanguageLayout(const QString &languageLayout) {
         pimpl->languageLayout = languageLayout;
         emit languageLayoutChanged();
     }
+}
+
+InputPanelIface *InputPanelIface::create(QQmlEngine *, QJSEngine *)
+{
+    return instance();
+}
+
+InputPanelIface *InputPanelIface::instance()
+{
+    if (!s_instance) {
+        s_instance = new InputPanelIface();
+    }
+    return s_instance;
 }

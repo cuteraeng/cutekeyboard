@@ -1,7 +1,4 @@
 #include "VirtualKeyboardInputContextPlugin.h"
-
-#include "EnterKeyAction.hpp"
-#include "EnterKeyActionAttachedType.hpp"
 #include "VirtualKeyboardInputContext.h"
 
 QPlatformInputContext *VirtualKeyboardInputContextPlugin::create(
@@ -13,5 +10,5 @@ QPlatformInputContext *VirtualKeyboardInputContextPlugin::create(
         return VirtualKeyboardInputContext::instance();
     }
 
-    return 0;
+    return nullptr;
 }

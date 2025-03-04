@@ -6,6 +6,6 @@ Key {
     btnDisplayedText: !InputEngine.symbolMode ? "&123" : "ABC"
     functionKey: true
     showPreview: false
-    btnBackground: InputPanel.btnSpecialBackgroundColor
+    btnBackground: InputPanelIface.btnSpecialBackgroundColor
     onClicked: InputEngine.symbolMode = !InputEngine.symbolMode
 }

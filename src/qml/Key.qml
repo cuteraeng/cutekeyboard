@@ -11,10 +11,10 @@ Button {
     property string btnText: ""
     property string btnDisplayedText: text
     property int btnKey: Qt.Key_unknown
-    property color btnBackground: InputPanel.btnBackgroundColor
+    property color btnBackground: InputPanelIface.btnBackgroundColor
     property int btnRadius: 5
-    property color txtColor: InputPanel.btnTextColor
-    property string txtFont: InputPanel.btnTextFontFamily
+    property color txtColor: InputPanelIface.btnTextColor
+    property string txtFont: InputPanelIface.btnTextFontFamily
     property string btnIcon: ""
     property var alternativeKeys: []
     property var inputPanelRef

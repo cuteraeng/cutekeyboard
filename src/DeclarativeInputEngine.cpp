@@ -8,6 +8,7 @@
 
 #include "DeclarativeInputEngine.h"
 
+DeclarativeInputEngine *DeclarativeInputEngine::s_instance = nullptr;
 /**
  * Private data class
  */
@@ -65,7 +66,14 @@ DeclarativeInputEngine::DeclarativeInputEngine(QObject *parent)
             &DeclarativeInputEngine::animatingFinished);
 }
 
-DeclarativeInputEngine::~DeclarativeInputEngine() { delete d; }
+DeclarativeInputEngine::~DeclarativeInputEngine()
+{
+    delete d;
+
+    if (s_instance == this) {
+        s_instance = nullptr;
+    }
+}
 
 bool DeclarativeInputEngine::virtualKeyClick(Qt::Key key, const QString &text,
                                              Qt::KeyboardModifiers modifiers) {
@@ -183,4 +191,17 @@ QString DeclarativeInputEngine::spaceIdentifierOfLayout(QString layout)
         return "";
     }
     return d->layoutFiles.value(layoutVal, {}).spaceIdentifier;
+}
+
+DeclarativeInputEngine *DeclarativeInputEngine::create(QQmlEngine *, QJSEngine *)
+{
+    return instance();
+}
+
+DeclarativeInputEngine *DeclarativeInputEngine::instance()
+{
+    if (!s_instance) {
+        s_instance = new DeclarativeInputEngine();
+    }
+    return s_instance;
 }

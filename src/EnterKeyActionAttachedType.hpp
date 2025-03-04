@@ -2,8 +2,6 @@
 
 #include <QObject>
 
-#include "EnterKeyAction.hpp"
-
 class EnterKeyActionAttachedType : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)

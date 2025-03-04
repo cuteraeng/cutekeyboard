@@ -12,12 +12,12 @@ Item {
     property color btnTextColor: "#ffffff"
     property string btnTextFontFamily
     property string languageLayout: "En"
-    property string backspaceIcon: "qrc:/icons/backspace.png"
+    property string backspaceIcon: "qrc:/CuteKeyboard/icons/backspace.png"
     property string enterIcon: ""
-    property string shiftOnIcon: "qrc:/icons/caps-lock-on.png"
-    property string shiftOffIcon: "qrc:/icons/caps-lock-off.png"
-    property string hideKeyboardIcon: "qrc:/icons/hide-arrow.png"
-    property string languageIcon: "qrc:/icons/language.png"
+    property string shiftOnIcon: "qrc:/CuteKeyboard/icons/caps-lock-on.png"
+    property string shiftOffIcon: "qrc:/CuteKeyboard/icons/caps-lock-off.png"
+    property string hideKeyboardIcon: "qrc:/CuteKeyboard/icons/hide-arrow.png"
+    property string languageIcon: "qrc:/CuteKeyboard/icons/language.png"
     property var availableLanguageLayouts: ["En"]
 
     /*! \internal */
@@ -69,19 +69,19 @@ Item {
         if (availableLanguageLayouts.length == 0)
             availableLanguageLayouts = ["En"];
 
-        InputPanel.backgroundColor = backgroundColor;
-        InputPanel.btnBackgroundColor = btnBackgroundColor;
-        InputPanel.btnSpecialBackgroundColor = btnSpecialBackgroundColor;
-        InputPanel.btnTextColor = btnTextColor;
-        InputPanel.btnTextFontFamily = btnTextFontFamily;
-        InputPanel.backspaceIcon = backspaceIcon;
-        InputPanel.enterIcon = enterIcon;
-        InputPanel.shiftOnIcon = shiftOnIcon;
-        InputPanel.shiftOffIcon = shiftOffIcon;
-        InputPanel.hideKeyboardIcon = hideKeyboardIcon;
-        InputPanel.languageIcon = languageIcon;
-        InputPanel.availableLanguageLayouts = availableLanguageLayouts;
-        InputPanel.languageLayout = languageLayout;
+        InputPanelIface.backgroundColor = backgroundColor;
+        InputPanelIface.btnBackgroundColor = btnBackgroundColor;
+        InputPanelIface.btnSpecialBackgroundColor = btnSpecialBackgroundColor;
+        InputPanelIface.btnTextColor = btnTextColor;
+        InputPanelIface.btnTextFontFamily = btnTextFontFamily;
+        InputPanelIface.backspaceIcon = backspaceIcon;
+        InputPanelIface.enterIcon = enterIcon;
+        InputPanelIface.shiftOnIcon = shiftOnIcon;
+        InputPanelIface.shiftOffIcon = shiftOffIcon;
+        InputPanelIface.hideKeyboardIcon = hideKeyboardIcon;
+        InputPanelIface.languageIcon = languageIcon;
+        InputPanelIface.availableLanguageLayouts = availableLanguageLayouts;
+        InputPanelIface.languageLayout = languageLayout;
         loadLettersLayout();
     }
 
@@ -115,7 +115,7 @@ Item {
     Rectangle {
         id: keyboardRect
 
-        color: InputPanel.backgroundColor
+        color: InputPanelIface.backgroundColor
         anchors.fill: parent
 
         MouseArea {
@@ -163,7 +163,7 @@ Item {
 
         Connections {
             function onLanguageLayoutChanged() {
-                languageLayout = InputPanel.languageLayout;
+                languageLayout = InputPanelIface.languageLayout;
                 loadLettersLayout();
             }
 

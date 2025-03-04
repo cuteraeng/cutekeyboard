@@ -14,10 +14,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Qml Quick)
 
 set(BUILD_EXAMPLES OFF)
 
-if(QT_KNOWN_POLICY_QTP0001)
-  qt_policy(SET QTP0001 NEW)
-endif()
-
 qt_standard_project_setup()
 
 add_subdirectory(src)

@@ -6,7 +6,11 @@
  * \author Uwe Kindler
  * \date 08/01/2015
  *
+ * \author Przemysław Adam Sowa
+ * \date 03/03/2025
+ *
  * Copyright (c) 2015 Uwe Kindler
+ * Copyright (c) 2025 Przemysław Adam Sowa
  */
 
 #ifndef DECLARATIVEINPUTENGINE_H
@@ -14,6 +18,7 @@
 
 #include <QObject>
 #include <QRect>
+#include <QQmlEngine>
 
 struct DeclarativeInputEnginePrivate;
 
@@ -24,6 +29,8 @@ struct DeclarativeInputEnginePrivate;
  */
 class DeclarativeInputEngine : public QObject {
     Q_OBJECT
+    QML_NAMED_ELEMENT(InputEngine)
+    QML_SINGLETON
 
     // clang-format off
     Q_PROPERTY(QRect keyboardRectangle READ keyboardRectangle WRITE setKeyboardRectangle NOTIFY keyboardRectangleChanged FINAL)
@@ -65,11 +72,6 @@ class DeclarativeInputEngine : public QObject {
      */
     enum InputMode { Letters, DigitsOnly };
     Q_ENUMS(InputMode)
-
-    /**
-     * Creates a dclarative input engine with the given parent
-     */
-    explicit DeclarativeInputEngine(QObject *parent = 0);
 
     /**
      * Virtual destructor
@@ -128,6 +130,16 @@ class DeclarativeInputEngine : public QObject {
      */
     Q_INVOKABLE QString spaceIdentifierOfLayout(QString layout);
 
+    /**
+     * Returns the singleton instance to the QML context.
+     */
+    static DeclarativeInputEngine *create(QQmlEngine *, QJSEngine *);
+
+    /**
+     * Use this function to access the singleton instance.
+     */
+    static DeclarativeInputEngine *instance();
+
    public slots:
     /**
      * Emits a key click event for the given key, text and modifiers.
@@ -162,6 +174,12 @@ class DeclarativeInputEngine : public QObject {
     void isSymbolModeChanged();
 
    private:
+    /**
+     * Creates a dclarative input engine with the given parent
+     */
+    explicit DeclarativeInputEngine(QObject *parent = 0);
+
+    static DeclarativeInputEngine *s_instance;
     DeclarativeInputEnginePrivate *d;
 
     friend struct DeclarativeInputEnginePrivate;

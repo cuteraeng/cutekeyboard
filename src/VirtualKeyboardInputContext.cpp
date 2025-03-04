@@ -32,28 +32,20 @@ VirtualKeyboardInputContextPrivate::VirtualKeyboardInputContextPrivate()
     : Flickable(0),
       FocusItem(0),
       Visible(false),
-      InputEngine(new DeclarativeInputEngine()),
-      inputPanelIface(new InputPanelIface()) {}
+      InputEngine(DeclarativeInputEngine::instance()),
+      inputPanelIface(InputPanelIface::instance()) {}
 
 VirtualKeyboardInputContext::VirtualKeyboardInputContext()
     : QPlatformInputContext(), d(new VirtualKeyboardInputContextPrivate) {
+
     d->FlickableContentScrollAnimation = new QPropertyAnimation(this);
     d->FlickableContentScrollAnimation->setPropertyName("contentY");
     d->FlickableContentScrollAnimation->setDuration(400);
     d->FlickableContentScrollAnimation->setEasingCurve(
         QEasingCurve(QEasingCurve::OutBack));
-    qmlRegisterSingletonType<DeclarativeInputEngine>(
-        "CuteKeyboard", 1, 0, "InputEngine", inputEngineProvider);
+
     connect(d->InputEngine, &DeclarativeInputEngine::animatingChanged, this,
             &VirtualKeyboardInputContext::ensureFocusedObjectVisible);
-
-    qmlRegisterSingletonType<InputPanelIface>("CuteKeyboard", 1, 0,
-                                              "InputPanel", inputPanelProvider);
-    qmlRegisterSingletonType<VirtualKeyboardInputContext>(
-        "CuteKeyboard", 1, 0, "InputContext", inputContextProvider);
-    qmlRegisterType<EnterKeyAction>("QtQuick.CuteKeyboard", 1, 0,
-                                    "EnterKeyAction");
-    qmlRegisterType<EnterKeyAction>("CuteKeyboard", 1, 0, "EnterKeyAction");
 }
 
 VirtualKeyboardInputContext::~VirtualKeyboardInputContext() {}
@@ -78,6 +70,11 @@ void VirtualKeyboardInputContext::registerInputPanel(QObject *inputPanel)
     this->inputPanel = inputPanel;
     if (QQuickItem *item = qobject_cast<QQuickItem *>(inputPanel))
         item->setZ(std::numeric_limits<qreal>::max());
+}
+
+VirtualKeyboardInputContext *VirtualKeyboardInputContext::create(QQmlEngine *, QJSEngine *)
+{
+    return VirtualKeyboardInputContext::instance();
 }
 
 bool VirtualKeyboardInputContext::isValid() const { return true; }
@@ -197,31 +194,4 @@ void VirtualKeyboardInputContext::ensureFocusedObjectVisible() {
         d->FlickableContentScrollAnimation->setEndValue(ContentY);
         d->FlickableContentScrollAnimation->start();
     }
-}
-
-QObject *VirtualKeyboardInputContext::inputEngineProvider(
-    QQmlEngine *engine, QJSEngine *scriptEngine) {
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-    return VirtualKeyboardInputContext::instance()->d->InputEngine;
-}
-
-QObject *VirtualKeyboardInputContext::inputPanelProvider(
-    QQmlEngine *engine, QJSEngine *scriptEngine) {
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-    return VirtualKeyboardInputContext::instance()->d->inputPanelIface;
-}
-
-QObject *VirtualKeyboardInputContext::inputContextProvider(
-    QQmlEngine *engine, QJSEngine *scriptEngine) {
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-    const auto instance=VirtualKeyboardInputContext::instance();
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QQmlEngine::setObjectOwnership(instance, QQmlEngine::CppOwnership);
-#else
-    QJSEngine::setObjectOwnership(instance,QJSEngine::CppOwnership);
-#endif
-    return instance;
 }
