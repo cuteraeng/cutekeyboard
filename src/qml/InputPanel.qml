@@ -12,12 +12,12 @@ Item {
     property color btnTextColor: "#ffffff"
     property string btnTextFontFamily
     property string languageLayout: "En"
-    property string backspaceIcon: "qrc:/CuteKeyboard/icons/backspace.png"
+    property string backspaceIcon: "qrc:/CuteKeyboard/icons/white/backspace.png"
     property string enterIcon: ""
-    property string shiftOnIcon: "qrc:/CuteKeyboard/icons/caps-lock-on.png"
-    property string shiftOffIcon: "qrc:/CuteKeyboard/icons/caps-lock-off.png"
-    property string hideKeyboardIcon: "qrc:/CuteKeyboard/icons/hide-arrow.png"
-    property string languageIcon: "qrc:/CuteKeyboard/icons/language.png"
+    property string shiftOnIcon: "qrc:/CuteKeyboard/icons/white/caps-lock-on.png"
+    property string shiftOffIcon: "qrc:/CuteKeyboard/icons/white/caps-lock-off.png"
+    property string hideKeyboardIcon: "qrc:/CuteKeyboard/icons/white/hide-arrow.png"
+    property string languageIcon: "qrc:/CuteKeyboard/icons/white/language.png"
     property var availableLanguageLayouts: ["En"]
 
     /*! \internal */

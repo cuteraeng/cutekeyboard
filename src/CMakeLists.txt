@@ -54,11 +54,11 @@ qt_add_resources(${PROJECT_NAME}
     "icons"
     PREFIX "/CuteKeyboard"
     FILES
-        "icons/backspace.png"
-        "icons/caps-lock-off.png"
-        "icons/caps-lock-on.png"
-        "icons/hide-arrow.png"
-        "icons/language.png"
+        "icons/white/backspace.png"
+        "icons/white/caps-lock-off.png"
+        "icons/white/caps-lock-on.png"
+        "icons/white/hide-arrow.png"
+        "icons/white/language.png"
 )
 
 target_link_libraries(
